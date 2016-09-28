@@ -17,3 +17,5 @@ PORT=7080
 1. In Github, YOUR_REPO -> Settings -> Webhooks
 2. Payload URL: `http://buildserver.com/pullrequest/BAMBOO_BUILD_ID`
 3. Secret: the `SECRET_KEY` in your .env config
+4. Tick `Let Me Select Individual Events`
+5. Tick `pull_request`
