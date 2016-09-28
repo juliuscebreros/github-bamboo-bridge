@@ -10,6 +10,7 @@ Receives github pull request hook and calls the local bamboo server to run a pla
 SECRET_KEY="SECRET_KEY"
 BAMBOO_USER="julius"
 BAMBOO_PASSWORD="password"
+BAMBOO_PORT=8085
 PORT=7080
 ```
 
