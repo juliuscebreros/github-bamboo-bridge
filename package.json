@@ -1,0 +1,25 @@
+{
+  "name": "github-bamboo-bridge",
+  "version": "1.0.0",
+  "description": "Api endpoint that github can call",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julius",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb-base": "^7.1.0",
+    "eslint-config-cloudhouse": "^1.0.1",
+    "eslint-plugin-import": "^1.14.0"
+  },
+  "dependencies": {
+    "buffer-equal-constant-time": "^1.0.1",
+    "dotenv": "^2.0.0",
+    "request": "^2.75.0",
+    "request-promise": "^4.1.1",
+    "restify": "^4.1.1"
+  }
+}
