@@ -56,13 +56,14 @@ def main( argv ):
             context='Bamboo'
         )
 
-        f.write( 'pending' )
+        f.write( 'pending' )        
+        f.close()
+        return 0
     else :
         print( 'Not safe to merge' )
         f.write( 'failed' )
-
-    f.close()
-    return
+        f.close()
+        return 1
 
 if __name__ == "__main__":
     main(sys.argv)
