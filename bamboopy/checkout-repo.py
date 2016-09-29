@@ -40,7 +40,7 @@ def main( argv ):
     f = open( './buildresult', 'w' )
     if pr.mergeable :
         # Clone repo
-        g = Repo.clone_from( upstream.clone_url, 'project')
+        g = Repo.clone_from( 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, upstream.full_name), 'project')
         repo = pr.head._json_data[ 'repo' ][ 'clone_url' ]
         label = pr.head.ref
 
