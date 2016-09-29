@@ -41,7 +41,7 @@ def main( argv ):
     if pr.mergeable :
         # Clone repo
         g = Repo.clone_from( 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, upstream.full_name), 'project')
-        repo = pr.head._json_data[ 'repo' ][ 'clone_url' ]
+        repo = 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, pr.head._json_data[ 'repo' ][ 'full_name' ] )
         label = pr.head.ref
 
         print( "Pulling from {0}".format( repo ) )
@@ -56,7 +56,7 @@ def main( argv ):
             context='Bamboo'
         )
 
-        f.write( 'pending' )        
+        f.write( 'pending' )
         f.close()
         return 0
     else :
