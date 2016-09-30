@@ -52,14 +52,17 @@ server.post(
         const pullRequest = req.body;
         const buildId = req.params.buildId;
 
-
-        bamboo.queueBuild( buildId, pullRequest.number )
-            .then( ( body ) => {
-                res.send( body );
-            } )
-            .catch( ( err ) => {
-                res.send( 400, err );
-            } );
+        if ( pullRequest.action === 'closed' && pullRequest.pull_request.merged ) {
+            res.send( 204 );
+        } else {
+            bamboo.queueBuild( buildId, pullRequest.number )
+                .then( ( body ) => {
+                    res.send( body );
+                } )
+                .catch( ( err ) => {
+                    res.send( 400, err );
+                } );
+        }
 
         return next();
     } );
