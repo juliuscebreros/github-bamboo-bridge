@@ -33,8 +33,8 @@ def main( argv ):
     upstream = gh.repository( UPSTREAM_USER, REPO_NAME )
     pr = upstream.pull_request( PULL_REQUEST )
 
-    print( "Testing PR {0}".format(pr.title) )
-    print( "Description {0}".format( pr.body ) )
+    print( u"Testing PR {0}".format(pr.title) )
+    print( u"Description {0}".format( pr.body ) )
 
     # Check if safe to merge
     f = open( './buildresult', 'w' )
@@ -44,7 +44,7 @@ def main( argv ):
         repo = 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, pr.head._json_data[ 'repo' ][ 'full_name' ] )
         label = pr.head.ref
 
-        print( "Pulling from {0}".format( repo ) )
+        print( u"Pulling from {0}".format( repo ) )
         print( "SHA: {0}".format( pr.head.sha ) )
         fork_g = g.create_remote( 'fork', repo )
         fork_g.pull( label )
