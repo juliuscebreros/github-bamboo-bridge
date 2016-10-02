@@ -28,16 +28,16 @@ def main( argv ):
 
     # Login to github
     gh = github3.login( API_USER, API_KEY )
+    write_status_file( 'pending' )
 
     # Get upstream and fork
     upstream = gh.repository( UPSTREAM_USER, REPO_NAME )
     pr = upstream.pull_request( PULL_REQUEST )
 
-    print( u"Testing PR {0}".format(pr.title) )
+    print( u"Testing PR {0}".format( pr.title ) )
     print( u"Description {0}".format( pr.body ) )
 
     # Check if safe to merge
-    f = open( './buildresult', 'w' )
     if pr.mergeable :
         # Clone repo
         g = Repo.clone_from( 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, upstream.full_name), 'project')
@@ -56,14 +56,18 @@ def main( argv ):
             context='Bamboo'
         )
 
-        f.write( 'pending' )
-        f.close()
+        write_status_file( 'pending' )
         return 0
     else :
         print( 'Not safe to merge' )
-        f.write( 'failed' )
-        f.close()
+        write_status_file( 'failed' )
         return 1
+
+def write_status_file( status ):
+    f = open( './buildresult', 'w' )
+    f.write( status )
+    f.close()
+    return
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
