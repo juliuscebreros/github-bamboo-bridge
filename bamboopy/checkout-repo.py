@@ -54,7 +54,7 @@ def main( argv ):
 
         upstream.create_status(
             sha=pr.head.sha,
-            target_url=RESULTS_URL
+            target_url=RESULTS_URL,
             state='pending',
             description='Running tests',
             context='Bamboo'

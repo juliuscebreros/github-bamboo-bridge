@@ -39,7 +39,7 @@ def updateStatus( repo, pr, status ):
     if status == 'success':
         repo.create_status(
             sha=pr.head.sha,
-            target_url=RESULTS_URL
+            target_url=RESULTS_URL,
             state='success',
             description='Build successful',
             context='Bamboo'
