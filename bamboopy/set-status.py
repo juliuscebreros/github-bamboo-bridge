@@ -47,7 +47,7 @@ def updateStatus( repo, pr, status ):
     else:
         repo.create_status(
             sha=pr.head.sha,
-            target_url=RESULTS_URL
+            target_url=RESULTS_URL,
             state='failure',
             description='Build failed',
             context='Bamboo'
