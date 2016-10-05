@@ -11,6 +11,7 @@ def main( argv ):
     parser.add_argument( '--upstream-user', required=True, help='The owner of the repo to merge to' )
     parser.add_argument( '--repo-name', required=True, help='The name of the repo to merge to' )
     parser.add_argument( '--pr-number', required=True, help='The pull request number' )
+    parser.add_argument( '--results-url', required=True, help='The Bamboo results url' )
 
     args = parser.parse_args()
 
@@ -19,6 +20,8 @@ def main( argv ):
     UPSTREAM_USER = args.upstream_user
     REPO_NAME = args.repo_name
     PR_NUMBER = args.pr_number
+
+    RESULTS_URL = args.results_url;
 
     f = open( './buildresult', 'r' )
     val = f.read()
@@ -36,6 +39,7 @@ def updateStatus( repo, pr, status ):
     if status == 'success':
         repo.create_status(
             sha=pr.head.sha,
+            target_url=RESULTS_URL
             state='success',
             description='Build successful',
             context='Bamboo'
@@ -43,6 +47,7 @@ def updateStatus( repo, pr, status ):
     else:
         repo.create_status(
             sha=pr.head.sha,
+            target_url=RESULTS_URL
             state='failure',
             description='Build failed',
             context='Bamboo'
