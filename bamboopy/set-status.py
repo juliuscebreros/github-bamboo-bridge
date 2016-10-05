@@ -31,10 +31,10 @@ def main( argv ):
     upstream = gh.repository( UPSTREAM_USER, REPO_NAME )
     pr = upstream.pull_request( PR_NUMBER )
 
-    updateStatus(  upstream, pr, val )
+    updateStatus(  upstream, pr, val, RESULTS_URL )
     return
 
-def updateStatus( repo, pr, status ):
+def updateStatus( repo, pr, status, RESULTS_URL ):
     print( 'Setting status: {0}'.format( status ) )
     if status == 'success':
         repo.create_status(
