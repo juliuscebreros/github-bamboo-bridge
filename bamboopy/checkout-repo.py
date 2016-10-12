@@ -37,8 +37,8 @@ def main( argv ):
     upstream = gh.repository( UPSTREAM_USER, REPO_NAME )
     pr = upstream.pull_request( PULL_REQUEST )
 
-    print( u"Testing PR {0}".format( pr.title ) )
-    print( u"Description {0}".format( pr.body ) )
+    print( "Testing PR: " + pr.title.encode('utf-8') )
+    print( "Description: "+ pr.body.encode('utf-8') )
 
     # Check if safe to merge
     if pr.mergeable :
