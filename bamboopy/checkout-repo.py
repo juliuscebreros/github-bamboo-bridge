@@ -37,13 +37,16 @@ def main( argv ):
     upstream = gh.repository( UPSTREAM_USER, REPO_NAME )
     pr = upstream.pull_request( PULL_REQUEST )
 
-    print( "Testing PR: " + pr.title.encode('utf-8') )
+    base_branch = pr.base.ref;
+
+    print( "Merging into: " + pr.base.label + " from: " + pr.head.label );
+    print( "PR Title: " + pr.title.encode('utf-8') )
     print( "Description: "+ pr.body.encode('utf-8') )
 
     # Check if safe to merge
     if pr.mergeable :
         # Clone repo
-        g = Repo.clone_from( 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, upstream.full_name), 'project')
+        g = Repo.clone_from( 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, upstream.full_name), 'project', branch=base_branch)
         repo = 'https://{0}:{1}@github.com/{2}.git'.format( API_USER, API_KEY, pr.head._json_data[ 'repo' ][ 'full_name' ] )
         label = pr.head.ref
 
