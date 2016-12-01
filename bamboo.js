@@ -6,10 +6,10 @@ module.exports = {
         const username = process.env.BAMBOO_USER;
         const password = process.env.BAMBOO_PASSWORD;
         const port = process.env.BAMBOO_PORT;
-        console.log( `Connecting to Bamboo as ${username}` );
+        console.log( `Connecting to Bamboo as ${username} Build: ${buildId}: PR #${prNumber}` );
         const options = {
             method: 'POST',
-            uri: `http://${username}:${password}@localhost:${port}/rest/api/latest/queue/${buildId}`,
+            uri: `https://${username}:${password}@localhost:${port}/rest/api/latest/queue/${buildId}`,
             json: true,
             qs: {
                 os_authType: 'basic',

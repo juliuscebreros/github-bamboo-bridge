@@ -60,6 +60,7 @@ server.post(
                     res.send( body );
                 } )
                 .catch( ( err ) => {
+                    console.error( err );
                     res.send( 400, err );
                 } );
         }
